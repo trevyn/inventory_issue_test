@@ -1,10 +1,23 @@
 on: [push]
 
-name: MacOS build
+name: Build
 
 jobs:
-  check:
-    name: Run
+  run_linux:
+    name: Run Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: run
+
+  run_macos:
+    name: Run MacOS
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
