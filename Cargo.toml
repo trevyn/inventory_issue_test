@@ -7,3 +7,11 @@ edition = "2021"
 
 [dependencies]
 inventory = "0.3"
+
+[profile.dev]
+incremental = false # see https://github.com/dtolnay/inventory/issues/24
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 'z'
